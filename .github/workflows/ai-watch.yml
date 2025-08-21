@@ -5,6 +5,10 @@ on:
     - cron: "0 * * * *"   # varje hel timme (UTC)
   workflow_dispatch: {}
 
+concurrency:
+  group: ai-watch
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -14,6 +18,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # viktigt för rebase
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -27,12 +33,12 @@ jobs:
       # 2) Annars hämta via SSH+SCP, filtrerat till LOG_DOMAIN (t.ex. worldpoker.fallberg.com)
       - name: Prepare access logs (demo or SFTP/SCP)
         env:
-          USE_DEMO_LOGS:   ${{ secrets.USE_DEMO_LOGS }}   # "true" för demo
-          SSH_HOST:        ${{ secrets.SSH_HOST }}
-          SSH_USER:        ${{ secrets.SSH_USER }}
-          SSH_PORT:        ${{ secrets.SSH_PORT }}        # valfri, default 22
-          SSH_PASSWORD:    ${{ secrets.SSH_PASSWORD }}    # valfri fallback för scp/sftp (om host tillåter)
-          LOG_DOMAIN:      ${{ secrets.LOG_DOMAIN }}      # ex: worldpoker.fallberg.com
+          USE_DEMO_LOGS: ${{ secrets.USE_DEMO_LOGS }}   # "true" för demo
+          SSH_HOST:      ${{ secrets.SSH_HOST }}
+          SSH_USER:      ${{ secrets.SSH_USER }}
+          SSH_PORT:      ${{ secrets.SSH_PORT }}        # valfri, default 22
+          SSH_PASSWORD:  ${{ secrets.SSH_PASSWORD }}    # valfri fallback (om servern tillåter)
+          LOG_DOMAIN:    ${{ secrets.LOG_DOMAIN }}      # ex: worldpoker.fallberg.com
         run: |
           set -e
           mkdir -p logs
@@ -58,7 +64,7 @@ jobs:
             REMOTE_DIR="/home/$SSH_USER/logs"
             echo "Listing remote logs in $REMOTE_DIR for domain: $LOG_DOMAIN"
 
-            # Lista enbart filer för LOG_DOMAIN: månadsarkiv (.gz) + ev. livefil (-ssl_log utan suffix)
+            # Lista enbart filer för LOG_DOMAIN: månadsarkiv (.gz) + ev. livefil (-ssl_log*)
             set +e
             REMOTE_LIST=$(ssh -i key -p "$PORT" -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" \
               "ls -1 $REMOTE_DIR/${LOG_DOMAIN}-*.gz $REMOTE_DIR/${LOG_DOMAIN}-ssl_log* 2>/dev/null")
@@ -68,15 +74,13 @@ jobs:
             echo "Remote matches:"
             echo "$REMOTE_LIST"
 
-            # Om vi inte hittar något, avbryt tyst (UI visar tomt för bots)
             if [ -z "$REMOTE_LIST" ]; then
               echo "No matching remote log files for $LOG_DOMAIN"
             else
-              # Hämta varje träff med scp
+              # Hämta varje träff med scp (password-fallback om satt)
               while IFS= read -r REMOTE_FILE; do
                 [ -n "$REMOTE_FILE" ] || continue
                 echo "Downloading $REMOTE_FILE"
-                # password-fallback om satt
                 if [ -n "$SSH_PASSWORD" ]; then
                   sudo apt-get update -y >/dev/null 2>&1
                   sudo apt-get install -y sshpass >/dev/null 2>&1
@@ -89,7 +93,7 @@ jobs:
 
             # Slå ihop allt till en access.log
             : > logs/access.log
-            # livefiler (utan .gz), om någon
+            # livefiler (utan .gz)
             for f in logs/${LOG_DOMAIN}-ssl_log*; do
               if [ -f "$f" ] && [[ "$f" != *.gz ]]; then
                 cat "$f" >> logs/access.log
@@ -128,8 +132,14 @@ jobs:
             git config user.name "ai-watch-bot"
             git config user.email "actions@users.noreply.github.com"
             git add data.json
-            git commit -m "Update data.json [skip ci]"
-            git push
+            git commit -m "Update data.json [skip ci]" || true
+
+            # Hämta senaste och rebase:a vår commit över origin/main
+            git fetch origin main
+            git rebase origin/main || (git rebase --abort && echo "Rebase failed" && exit 1)
+
+            # Pusha rebasead HEAD till main
+            git push origin HEAD:main
           else
             echo "No changes to commit"
           fi
