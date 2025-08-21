@@ -2,7 +2,7 @@ name: Build & commit AI Watch data
 
 on:
   schedule:
-    - cron: "17 6,18 * * *"   # 2 ggr/dygn (UTC)
+    - cron: "0 * * * *"   # varje hel timme (UTC)
   workflow_dispatch: {}
 
 permissions:
@@ -12,46 +12,120 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
 
       - name: Install deps
-        run: npm i rss-parser googleapis fast-xml-parser
+        run: npm i rss-parser googleapis
+
+      # HÄMTA LOGGAR (valfritt)
+      # Prioritet:
+      # 1) Demo-logg om USE_DEMO_LOGS=true
+      # 2) FTPS (månad + live) om FTP_* secrets finns
+      # 3) Skippar helt om varken demo eller FTP-secrets är satta
+      - name: Prepare access logs (demo or FTPS)
+        env:
+          USE_DEMO_LOGS: ${{ secrets.USE_DEMO_LOGS }} # "true" för demo
+          FTP_SERVER:   ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          LOG_DOMAIN:   ${{ secrets.LOG_DOMAIN }}     # ex: worldpoker.fallberg.com
+        run: |
+          set -e
+          mkdir -p logs
+
+          if [ "${USE_DEMO_LOGS,,}" = "true" ]; then
+            echo "→ Using demo access.log"
+            cat > logs/access.log << 'EOF'
+127.0.0.1 - - [21/Aug/2025:10:13:11 +0000] "GET / HTTP/1.1" 200 123 "-" "GPTBot (https://openai.com/gptbot)"
+127.0.0.1 - - [21/Aug/2025:10:14:55 +0000] "GET /poker HTTP/1.1" 200 456 "-" "PerplexityBot/1.0 (+https://www.perplexity.ai/bot)"
+127.0.0.1 - - [21/Aug/2025:10:15:22 +0000] "GET /robots.txt HTTP/1.1" 200 78 "-" "Mozilla/5.0 (Linux; Google-Extended)"
+EOF
+            echo "LOG_PATH=$PWD/logs/access.log" >> $GITHUB_ENV
+            exit 0
+          fi
+
+          if [ -n "$FTP_SERVER" ] && [ -n "$FTP_USERNAME" ] && [ -n "$FTP_PASSWORD" ] && [ -n "$LOG_DOMAIN" ]; then
+            echo "→ Trying FTPS download from $FTP_SERVER for $LOG_DOMAIN"
+
+            CUR_MON=$(date -u +%b-%Y)             # t.ex. Aug-2025
+            PREV_MON=$(date -u -d "-1 month" +%b-%Y)
+
+            # Vanliga månadsarkivnamn i /logs
+            CANDS="
+            ${LOG_DOMAIN}-${CUR_MON}.gz
+            ${LOG_DOMAIN}-${PREV_MON}.gz
+            ${LOG_DOMAIN}-ssl_log-${CUR_MON}.gz
+            ${LOG_DOMAIN}-ssl_log-${PREV_MON}.gz
+            "
+
+            got_archive=""
+            for F in $CANDS; do
+              url="ftp://$FTP_SERVER/logs/$F"
+              echo "➜ Fetch $url"
+              if curl --silent --show-error --fail --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "$url" -o "logs/$F"; then
+                got_archive="logs/$F"
+                echo "✅ Got $F"
+                break
+              fi
+            done
+
+            # Försök hämta dagens livefil (finns inte alltid)
+            LIVE_CANDS="
+            ${LOG_DOMAIN}-ssl_log
+            ${LOG_DOMAIN}-access_log
+            "
+            got_live=""
+            for F in $LIVE_CANDS; do
+              url="ftp://$FTP_SERVER/logs/$F"
+              echo "➜ Fetch $url"
+              if curl --silent --show-error --fail --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "$url" -o "logs/$F"; then
+                got_live="logs/$F"
+                echo "✅ Got live $F"
+                break
+              fi
+            done
+
+            # Bygg samlad access.log (arkiv + live)
+            : > logs/access.log
+            if [ -n "$got_archive" ]; then gunzip -c "$got_archive" >> logs/access.log; fi
+            if [ -n "$got_live" ]; then cat "$got_live" >> logs/access.log; fi
+
+            if [ -s logs/access.log ]; then
+              echo "LOG_PATH=$PWD/logs/access.log" >> $GITHUB_ENV
+              echo "✓ access.log ready ($(wc -l < logs/access.log) rows)"
+            else
+              echo "⚠️  No log data found via FTPS — bots section will be empty."
+            fi
+          else
+            echo "ℹ️  No demo flag and no FTP secrets — skipping logs."
+          fi
 
       - name: Generate data.json
         env:
-          BRAND_TERMS: ${{ secrets.BRAND_TERMS }}
-          ALERT_FEEDS:  ${{ secrets.ALERT_FEEDS }}
-          GSC_CLIENT_ID: ${{ secrets.GSC_CLIENT_ID }}
-          GSC_CLIENT_SECRET: ${{ secrets.GSC_CLIENT_SECRET }}
-          GSC_REFRESH_TOKEN: ${{ secrets.GSC_REFRESH_TOKEN }}
-          GSC_PROPERTY: ${{ secrets.GSC_PROPERTY }}
-          LOG_PATH: ""
+          BRAND_TERMS:      ${{ secrets.BRAND_TERMS }}
+          ALERT_FEEDS:      ${{ secrets.ALERT_FEEDS }}
+          GSC_CLIENT_ID:    ${{ secrets.GSC_CLIENT_ID }}
+          GSC_CLIENT_SECRET:${{ secrets.GSC_CLIENT_SECRET }}
+          GSC_REFRESH_TOKEN:${{ secrets.GSC_REFRESH_TOKEN }}
+          GSC_PROPERTY:     ${{ secrets.GSC_PROPERTY }}
+          LOG_PATH:         ${{ env.LOG_PATH }}   # sätts endast om logg hittades
+          DEMO:             ${{ secrets.DEMO }}   # valfritt demo-läge i scriptet
         run: node scripts/update_data.mjs
-
-      # Flytta filen om skriptet skrev till ai-watch/data.json
-      - name: Normalize output path
-        run: |
-          set -e
-          if [ ! -f data.json ] && [ -f ai-watch/data.json ]; then
-            echo "Moving ai-watch/data.json -> data.json"
-            mv ai-watch/data.json data.json
-          fi
-          # Om filen fortfarande saknas, skapa en tom (så commit-steget inte failar)
-          if [ ! -f data.json ]; then
-            echo "{}" > data.json
-            echo "Created empty data.json (tips: sätt ALERT_FEEDS i Secrets)"
-          fi
-          echo "--- ls repo root ---"
-          ls -la
 
       - name: Commit data.json
         run: |
-          git config user.name "ai-watch-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add -A
-          git commit -m "Update data.json [skip ci]" || echo "No changes to commit"
-          git push || true
+          if ! git diff --quiet -- data.json; then
+            git config user.name "ai-watch-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add data.json
+            git commit -m "Update data.json [skip ci]"
+            git push
+          else
+            echo "No changes to commit"
+          fi
