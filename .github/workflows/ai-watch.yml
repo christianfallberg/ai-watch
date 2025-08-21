@@ -23,17 +23,20 @@ jobs:
       - name: Install deps
         run: npm i rss-parser googleapis
 
-      # Förbered loggar: 1) demo om USE_DEMO_LOGS=true, annars 2) SFTP om SSH_* finns, annars skip
+      # 1) Demo-logg om USE_DEMO_LOGS=true
+      # 2) Annars hämta via SFTP (SSH_* secrets krävs)
       - name: Prepare access logs (demo or SFTP)
         env:
           USE_DEMO_LOGS: ${{ secrets.USE_DEMO_LOGS }}
           SSH_HOST:       ${{ secrets.SSH_HOST }}
           SSH_USER:       ${{ secrets.SSH_USER }}
+          SSH_PORT:       ${{ secrets.SSH_PORT }}       # valfri, default 22
+          SSH_PASSWORD:   ${{ secrets.SSH_PASSWORD }}   # valfri fallback
         run: |
           set -e
           mkdir -p logs
 
-          # 1) Demo-logg för snabb UI-test
+          # --- Demo ---
           if [ "${USE_DEMO_LOGS,,}" = "true" ]; then
             echo "Using demo access.log"
             printf '%s\n' \
@@ -45,29 +48,42 @@ jobs:
             exit 0
           fi
 
-          # 2) SFTP-hämtning om SSH_* finns
+          # --- SFTP ---
           if [ -n "$SSH_HOST" ] && [ -n "$SSH_USER" ] && [ -n "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
-            echo "Preparing SFTP to $SSH_USER@$SSH_HOST"
-            echo "${{ secrets.SSH_PRIVATE_KEY }}" > key
+            PORT="${SSH_PORT:-22}"
+
+            # Skriv privata nyckeln till fil
+            printf '%s' '${{ secrets.SSH_PRIVATE_KEY }}' > key
             chmod 600 key
 
-            CPUSER="$SSH_USER"
-
-            # Bygg SFTP-batch utan heredoc (robust i YAML)
+            echo "SFTP (key) listing /home/$SSH_USER/logs on $SSH_HOST:$PORT"
+            # Bygg batchfil för sftp
             printf '%s\n' \
               "lcd logs" \
-              "cd /home/$CPUSER/logs" \
+              "cd /home/$SSH_USER/logs" \
               "ls" \
               "mget *-ssl_log" \
               "mget *.gz" \
               "bye" > sftp_batch.txt
 
-            # Kör SFTP-batch (lista + hämta månadsarkiv och ev. livefil)
+            # Försök med key-auth
             set +e
-            sftp -i key -o StrictHostKeyChecking=no -b sftp_batch.txt "$SSH_USER@$SSH_HOST"
-            SFTP_STATUS=$?
+            sftp -i key -P "$PORT" -o StrictHostKeyChecking=no -b sftp_batch.txt "$SSH_USER@$SSH_HOST"
+            KEY_STATUS=$?
             set -e
-            echo "SFTP exit code: $SFTP_STATUS"
+            echo "SFTP with key exit code: $KEY_STATUS"
+
+            # Fallback: lösenord om satt
+            if [ $KEY_STATUS -ne 0 ] && [ -n "$SSH_PASSWORD" ]; then
+              echo "Trying SFTP with password fallback"
+              sudo apt-get update -y >/dev/null 2>&1
+              sudo apt-get install -y sshpass >/dev/null 2>&1
+              set +e
+              sshpass -p "$SSH_PASSWORD" sftp -P "$PORT" -o StrictHostKeyChecking=no -b sftp_batch.txt "$SSH_USER@$SSH_HOST"
+              PASS_STATUS=$?
+              set -e
+              echo "SFTP with password exit code: $PASS_STATUS"
+            fi
 
             # Slå ihop allt till en access.log
             : > logs/access.log
