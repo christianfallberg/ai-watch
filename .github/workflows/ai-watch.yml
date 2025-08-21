@@ -2,11 +2,11 @@ name: Build & commit AI Watch data
 
 on:
   schedule:
-    - cron: "17 6,18 * * *"   # kör 2 ggr/dygn (UTC)
-  workflow_dispatch: {}        # så du kan köra manuellt
+    - cron: "17 6,18 * * *"   # 2 ggr/dygn (UTC)
+  workflow_dispatch: {}
 
 permissions:
-  contents: write              # behövs för att committa
+  contents: write
 
 jobs:
   build:
@@ -23,25 +23,25 @@ jobs:
 
       - name: Generate data.json
         env:
-          BRAND_TERMS: ${{ secrets.BRAND_TERMS }}           # t.ex. "World Poker Guide,wpg,worldpoker.guide"
-          ALERT_FEEDS:  ${{ secrets.ALERT_FEEDS }}          # kommaseparerade Google Alerts RSS-URL:er
-          GSC_CLIENT_ID: ${{ secrets.GSC_CLIENT_ID }}       # valfritt (för GSC)
+          BRAND_TERMS: ${{ secrets.BRAND_TERMS }}
+          ALERT_FEEDS:  ${{ secrets.ALERT_FEEDS }}
+          GSC_CLIENT_ID: ${{ secrets.GSC_CLIENT_ID }}
           GSC_CLIENT_SECRET: ${{ secrets.GSC_CLIENT_SECRET }}
           GSC_REFRESH_TOKEN: ${{ secrets.GSC_REFRESH_TOKEN }}
-          GSC_PROPERTY: ${{ secrets.GSC_PROPERTY }}         # ex: https://worldpoker.guide/
-          LOG_PATH: ""                                      # lämna tomt här
+          GSC_PROPERTY: ${{ secrets.GSC_PROPERTY }}
+          LOG_PATH: ""
         run: node scripts/update_data.mjs
 
       - name: Commit data.json if changed
         run: |
-          if [ ! -f ai-watch/data.json ]; then
-            echo "ai-watch/data.json saknas" && exit 1
+          if [ ! -f data.json ]; then
+            echo "data.json saknas" && exit 1
           fi
-          if ! git diff --quiet -- ai-watch/data.json; then
+          if ! git diff --quiet -- data.json; then
             git config user.name "ai-watch-bot"
             git config user.email "actions@users.noreply.github.com"
-            git add ai-watch/data.json
-            git commit -m "Update ai-watch data [skip ci]"
+            git add data.json
+            git commit -m "Update data.json [skip ci]"
             git push
           else
             echo "Inga ändringar i data.json"
