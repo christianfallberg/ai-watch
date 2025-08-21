@@ -23,11 +23,7 @@ jobs:
       - name: Install deps
         run: npm i rss-parser googleapis
 
-      # HÄMTA LOGGAR (valfritt)
-      # Prioritet:
-      # 1) Demo-logg om USE_DEMO_LOGS=true
-      # 2) FTPS (månad + live) om FTP_* secrets finns
-      # 3) Skippar helt om varken demo eller FTP-secrets är satta
+      # Förbered loggar (demo eller FTPS). Skippa om varken demo-flagga eller FTP-secrets finns.
       - name: Prepare access logs (demo or FTPS)
         env:
           USE_DEMO_LOGS: ${{ secrets.USE_DEMO_LOGS }} # "true" för demo
@@ -40,18 +36,18 @@ jobs:
           mkdir -p logs
 
           if [ "${USE_DEMO_LOGS,,}" = "true" ]; then
-            echo "→ Using demo access.log"
-            cat > logs/access.log << 'EOF'
-127.0.0.1 - - [21/Aug/2025:10:13:11 +0000] "GET / HTTP/1.1" 200 123 "-" "GPTBot (https://openai.com/gptbot)"
-127.0.0.1 - - [21/Aug/2025:10:14:55 +0000] "GET /poker HTTP/1.1" 200 456 "-" "PerplexityBot/1.0 (+https://www.perplexity.ai/bot)"
-127.0.0.1 - - [21/Aug/2025:10:15:22 +0000] "GET /robots.txt HTTP/1.1" 200 78 "-" "Mozilla/5.0 (Linux; Google-Extended)"
-EOF
+            echo "Using demo access.log"
+            printf '%s\n' \
+'127.0.0.1 - - [21/Aug/2025:10:13:11 +0000] "GET / HTTP/1.1" 200 123 "-" "GPTBot (https://openai.com/gptbot)"' \
+'127.0.0.1 - - [21/Aug/2025:10:14:55 +0000] "GET /poker HTTP/1.1" 200 456 "-" "PerplexityBot/1.0 (+https://www.perplexity.ai/bot)"' \
+'127.0.0.1 - - [21/Aug/2025:10:15:22 +0000] "GET /robots.txt HTTP/1.1" 200 78 "-" "Mozilla/5.0 (Linux; Google-Extended)"' \
+            > logs/access.log
             echo "LOG_PATH=$PWD/logs/access.log" >> $GITHUB_ENV
             exit 0
           fi
 
           if [ -n "$FTP_SERVER" ] && [ -n "$FTP_USERNAME" ] && [ -n "$FTP_PASSWORD" ] && [ -n "$LOG_DOMAIN" ]; then
-            echo "→ Trying FTPS download from $FTP_SERVER for $LOG_DOMAIN"
+            echo "Trying FTPS download from $FTP_SERVER for $LOG_DOMAIN"
 
             CUR_MON=$(date -u +%b-%Y)             # t.ex. Aug-2025
             PREV_MON=$(date -u -d "-1 month" +%b-%Y)
@@ -67,10 +63,10 @@ EOF
             got_archive=""
             for F in $CANDS; do
               url="ftp://$FTP_SERVER/logs/$F"
-              echo "➜ Fetch $url"
+              echo "Fetch $url"
               if curl --silent --show-error --fail --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "$url" -o "logs/$F"; then
                 got_archive="logs/$F"
-                echo "✅ Got $F"
+                echo "Got $F"
                 break
               fi
             done
@@ -83,10 +79,10 @@ EOF
             got_live=""
             for F in $LIVE_CANDS; do
               url="ftp://$FTP_SERVER/logs/$F"
-              echo "➜ Fetch $url"
+              echo "Fetch $url"
               if curl --silent --show-error --fail --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "$url" -o "logs/$F"; then
                 got_live="logs/$F"
-                echo "✅ Got live $F"
+                echo "Got live $F"
                 break
               fi
             done
@@ -98,24 +94,24 @@ EOF
 
             if [ -s logs/access.log ]; then
               echo "LOG_PATH=$PWD/logs/access.log" >> $GITHUB_ENV
-              echo "✓ access.log ready ($(wc -l < logs/access.log) rows)"
+              echo "access.log ready ($(wc -l < logs/access.log) rows)"
             else
-              echo "⚠️  No log data found via FTPS — bots section will be empty."
+              echo "No log data found via FTPS — bots section will be empty."
             fi
           else
-            echo "ℹ️  No demo flag and no FTP secrets — skipping logs."
+            echo "No demo flag and no FTP secrets — skipping logs."
           fi
 
       - name: Generate data.json
         env:
-          BRAND_TERMS:      ${{ secrets.BRAND_TERMS }}
-          ALERT_FEEDS:      ${{ secrets.ALERT_FEEDS }}
-          GSC_CLIENT_ID:    ${{ secrets.GSC_CLIENT_ID }}
-          GSC_CLIENT_SECRET:${{ secrets.GSC_CLIENT_SECRET }}
-          GSC_REFRESH_TOKEN:${{ secrets.GSC_REFRESH_TOKEN }}
-          GSC_PROPERTY:     ${{ secrets.GSC_PROPERTY }}
-          LOG_PATH:         ${{ env.LOG_PATH }}   # sätts endast om logg hittades
-          DEMO:             ${{ secrets.DEMO }}   # valfritt demo-läge i scriptet
+          BRAND_TERMS:       ${{ secrets.BRAND_TERMS }}
+          ALERT_FEEDS:       ${{ secrets.ALERT_FEEDS }}
+          GSC_CLIENT_ID:     ${{ secrets.GSC_CLIENT_ID }}
+          GSC_CLIENT_SECRET: ${{ secrets.GSC_CLIENT_SECRET }}
+          GSC_REFRESH_TOKEN: ${{ secrets.GSC_REFRESH_TOKEN }}
+          GSC_PROPERTY:      ${{ secrets.GSC_PROPERTY }}
+          LOG_PATH:          ${{ env.LOG_PATH }}   # sätts endast om logg hittades
+          DEMO:              ${{ secrets.DEMO }}   # valfritt demo-läge i scriptet
         run: node scripts/update_data.mjs
 
       - name: Commit data.json
