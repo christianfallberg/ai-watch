@@ -30,7 +30,7 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOG_DOMAIN:   ${{ secrets.LOG_DOMAIN }}     # ex: worldpoker.fallberg.com
-          FTPS_INSECURE:${{ secrets.FTPS_INSECURE }}  # "true" om certet krånglar (tillfälligt)
+          FTPS_INSECURE: ${{ secrets.FTPS_INSECURE }}  # "true" om certet krånglar (tillfälligt)
         run: |
           set -e
           mkdir -p logs
