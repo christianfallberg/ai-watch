@@ -24,14 +24,15 @@ jobs:
         run: npm i rss-parser googleapis
 
       # 1) Demo-logg om USE_DEMO_LOGS=true
-      # 2) Annars hämta via SFTP (SSH_* secrets krävs)
-      - name: Prepare access logs (demo or SFTP)
+      # 2) Annars hämta via SSH+SCP, filtrerat till LOG_DOMAIN (t.ex. worldpoker.fallberg.com)
+      - name: Prepare access logs (demo or SFTP/SCP)
         env:
-          USE_DEMO_LOGS: ${{ secrets.USE_DEMO_LOGS }}
-          SSH_HOST:       ${{ secrets.SSH_HOST }}
-          SSH_USER:       ${{ secrets.SSH_USER }}
-          SSH_PORT:       ${{ secrets.SSH_PORT }}       # valfri, default 22
-          SSH_PASSWORD:   ${{ secrets.SSH_PASSWORD }}   # valfri fallback
+          USE_DEMO_LOGS:   ${{ secrets.USE_DEMO_LOGS }}   # "true" för demo
+          SSH_HOST:        ${{ secrets.SSH_HOST }}
+          SSH_USER:        ${{ secrets.SSH_USER }}
+          SSH_PORT:        ${{ secrets.SSH_PORT }}        # valfri, default 22
+          SSH_PASSWORD:    ${{ secrets.SSH_PASSWORD }}    # valfri fallback för scp/sftp (om host tillåter)
+          LOG_DOMAIN:      ${{ secrets.LOG_DOMAIN }}      # ex: worldpoker.fallberg.com
         run: |
           set -e
           mkdir -p logs
@@ -48,56 +49,65 @@ jobs:
             exit 0
           fi
 
-          # --- SFTP ---
-          if [ -n "$SSH_HOST" ] && [ -n "$SSH_USER" ] && [ -n "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+          # --- SSH/SCP för riktiga loggar ---
+          if [ -n "$SSH_HOST" ] && [ -n "$SSH_USER" ] && [ -n "${{ secrets.SSH_PRIVATE_KEY }}" ] && [ -n "$LOG_DOMAIN" ]; then
             PORT="${SSH_PORT:-22}"
-
-            # Skriv privata nyckeln till fil
             printf '%s' '${{ secrets.SSH_PRIVATE_KEY }}' > key
             chmod 600 key
 
-            echo "SFTP (key) listing /home/$SSH_USER/logs on $SSH_HOST:$PORT"
-            # Bygg batchfil för sftp
-            printf '%s\n' \
-              "lcd logs" \
-              "cd /home/$SSH_USER/logs" \
-              "ls" \
-              "mget *-ssl_log" \
-              "mget *.gz" \
-              "bye" > sftp_batch.txt
+            REMOTE_DIR="/home/$SSH_USER/logs"
+            echo "Listing remote logs in $REMOTE_DIR for domain: $LOG_DOMAIN"
 
-            # Försök med key-auth
+            # Lista enbart filer för LOG_DOMAIN: månadsarkiv (.gz) + ev. livefil (-ssl_log utan suffix)
             set +e
-            sftp -i key -P "$PORT" -o StrictHostKeyChecking=no -b sftp_batch.txt "$SSH_USER@$SSH_HOST"
-            KEY_STATUS=$?
+            REMOTE_LIST=$(ssh -i key -p "$PORT" -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" \
+              "ls -1 $REMOTE_DIR/${LOG_DOMAIN}-*.gz $REMOTE_DIR/${LOG_DOMAIN}-ssl_log* 2>/dev/null")
+            SSH_STATUS=$?
             set -e
-            echo "SFTP with key exit code: $KEY_STATUS"
+            echo "ssh list exit code: $SSH_STATUS"
+            echo "Remote matches:"
+            echo "$REMOTE_LIST"
 
-            # Fallback: lösenord om satt
-            if [ $KEY_STATUS -ne 0 ] && [ -n "$SSH_PASSWORD" ]; then
-              echo "Trying SFTP with password fallback"
-              sudo apt-get update -y >/dev/null 2>&1
-              sudo apt-get install -y sshpass >/dev/null 2>&1
-              set +e
-              sshpass -p "$SSH_PASSWORD" sftp -P "$PORT" -o StrictHostKeyChecking=no -b sftp_batch.txt "$SSH_USER@$SSH_HOST"
-              PASS_STATUS=$?
-              set -e
-              echo "SFTP with password exit code: $PASS_STATUS"
+            # Om vi inte hittar något, avbryt tyst (UI visar tomt för bots)
+            if [ -z "$REMOTE_LIST" ]; then
+              echo "No matching remote log files for $LOG_DOMAIN"
+            else
+              # Hämta varje träff med scp
+              while IFS= read -r REMOTE_FILE; do
+                [ -n "$REMOTE_FILE" ] || continue
+                echo "Downloading $REMOTE_FILE"
+                # password-fallback om satt
+                if [ -n "$SSH_PASSWORD" ]; then
+                  sudo apt-get update -y >/dev/null 2>&1
+                  sudo apt-get install -y sshpass >/dev/null 2>&1
+                  sshpass -p "$SSH_PASSWORD" scp -P "$PORT" -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST:$REMOTE_FILE" logs/ || true
+                else
+                  scp -i key -P "$PORT" -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST:$REMOTE_FILE" logs/ || true
+                fi
+              done <<< "$REMOTE_LIST"
             fi
 
             # Slå ihop allt till en access.log
             : > logs/access.log
-            for f in logs/*-ssl_log; do [ -f "$f" ] && cat "$f" >> logs/access.log; done
-            for f in logs/*.gz; do [ -f "$f" ] && gunzip -c "$f" >> logs/access.log; done
+            # livefiler (utan .gz), om någon
+            for f in logs/${LOG_DOMAIN}-ssl_log*; do
+              if [ -f "$f" ] && [[ "$f" != *.gz ]]; then
+                cat "$f" >> logs/access.log
+              fi
+            done
+            # arkiv (.gz)
+            for f in logs/${LOG_DOMAIN}-*.gz; do
+              [ -f "$f" ] && gunzip -c "$f" >> logs/access.log
+            done
 
             if [ -s logs/access.log ]; then
               echo "LOG_PATH=$PWD/logs/access.log" >> $GITHUB_ENV
               echo "access.log ready ($(wc -l < logs/access.log) rows)"
             else
-              echo "No log data found via SFTP — bots section will be empty."
+              echo "No log data found via SFTP/SCP — bots section will be empty."
             fi
           else
-            echo "No demo flag and no SSH_* secrets — skipping logs."
+            echo "Missing SSH_* or LOG_DOMAIN secrets — skipping logs."
           fi
 
       - name: Generate data.json
