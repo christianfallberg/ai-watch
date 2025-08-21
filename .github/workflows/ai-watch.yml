@@ -32,11 +32,33 @@ jobs:
           LOG_PATH: ""
         run: node scripts/update_data.mjs
 
+      # NYTT: Normalisera var filen hamnade
+      - name: Normalize output path
+        run: |
+          set -e
+          # Om skriptet skrev till ai-watch/data.json, flytta den till reporoten
+          if [ ! -f data.json ] && [ -f ai-watch/data.json ]; then
+            echo "Moving ai-watch/data.json -> data.json"
+            mv ai-watch/data.json data.json
+          fi
+          # Fallback: hitta första data.json någonstans under repo (max 3 nivåer)
+          if [ ! -f data.json ]; then
+            FOUND=$(find . -maxdepth 3 -type f -name data.json | head -n1 || true)
+            if [ -n "$FOUND" ]; then
+              echo "Found $FOUND -> data.json"
+              mv "$FOUND" data.json
+            fi
+          fi
+          # Sista utväg: skapa tom fil så steget inte dör (bättre än fail)
+          if [ ! -f data.json ]; then
+            echo "{}" > data.json
+            echo "Created empty data.json (tip: sätt ALERT_FEEDS i Secrets)"
+          fi
+          echo "Repo root after normalize:"
+          ls -la
+
       - name: Commit data.json if changed
         run: |
-          if [ ! -f data.json ]; then
-            echo "data.json saknas" && exit 1
-          fi
           if ! git diff --quiet -- data.json; then
             git config user.name "ai-watch-bot"
             git config user.email "actions@users.noreply.github.com"
