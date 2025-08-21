@@ -1,0 +1,48 @@
+name: Build & publish AI Watch data
+
+on:
+  schedule:
+    - cron: "17 6,18 * * *"   # kör 2 ggr/dygn (UTC)
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm i rss-parser googleapis fast-xml-parser
+      - name: Generate data.json
+        env:
+          BRAND_TERMS: ${{ secrets.BRAND_TERMS }}            # t.ex. "World Poker Guide,wpg,worldpoker.guide"
+          ALERT_FEEDS:  ${{ secrets.ALERT_FEEDS }}           # kommaseparerade Google Alerts RSS-URL:er
+          GSC_CLIENT_ID: ${{ secrets.GSC_CLIENT_ID }}        # valfritt (för GSC)
+          GSC_CLIENT_SECRET: ${{ secrets.GSC_CLIENT_SECRET }}
+          GSC_REFRESH_TOKEN: ${{ secrets.GSC_REFRESH_TOKEN }}
+          GSC_PROPERTY: ${{ secrets.GSC_PROPERTY }}          # ex: https://worldpoker.guide/
+          LOG_PATH: ""
+        run: node scripts/update_data.mjs
+
+      - name: Prepare Pages artifact
+        run: |
+          mkdir -p public/ai-watch
+          cp ai-watch/data.json public/ai-watch/data.json
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
