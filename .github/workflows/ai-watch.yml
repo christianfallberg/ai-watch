@@ -23,7 +23,6 @@ jobs:
       - name: Install deps
         run: npm i rss-parser googleapis
 
-      # Förbered loggar (demo eller FTPS). Skippa om varken demo-flagga eller FTP-secrets finns.
       - name: Prepare access logs (demo or FTPS)
         env:
           USE_DEMO_LOGS: ${{ secrets.USE_DEMO_LOGS }} # "true" för demo
@@ -38,10 +37,10 @@ jobs:
           if [ "${USE_DEMO_LOGS,,}" = "true" ]; then
             echo "Using demo access.log"
             printf '%s\n' \
-'127.0.0.1 - - [21/Aug/2025:10:13:11 +0000] "GET / HTTP/1.1" 200 123 "-" "GPTBot (https://openai.com/gptbot)"' \
-'127.0.0.1 - - [21/Aug/2025:10:14:55 +0000] "GET /poker HTTP/1.1" 200 456 "-" "PerplexityBot/1.0 (+https://www.perplexity.ai/bot)"' \
-'127.0.0.1 - - [21/Aug/2025:10:15:22 +0000] "GET /robots.txt HTTP/1.1" 200 78 "-" "Mozilla/5.0 (Linux; Google-Extended)"' \
-            > logs/access.log
+              '127.0.0.1 - - [21/Aug/2025:10:13:11 +0000] "GET / HTTP/1.1" 200 123 "-" "GPTBot (https://openai.com/gptbot)"' \
+              '127.0.0.1 - - [21/Aug/2025:10:14:55 +0000] "GET /poker HTTP/1.1" 200 456 "-" "PerplexityBot/1.0 (+https://www.perplexity.ai/bot)"' \
+              '127.0.0.1 - - [21/Aug/2025:10:15:22 +0000] "GET /robots.txt HTTP/1.1" 200 78 "-" "Mozilla/5.0 (Linux; Google-Extended)"' \
+              > logs/access.log
             echo "LOG_PATH=$PWD/logs/access.log" >> $GITHUB_ENV
             exit 0
           fi
