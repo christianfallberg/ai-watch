@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Watch — World Poker Guide</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>AI Watch</h1>
+    <p>Översikt av varumärkesomnämnanden, AI-botar och brand-sök.</p>
+    <small id="last-updated"></small>
+  </header>
+
+  <main>
+    <section id="alerts" class="card">
+      <h2>Senaste omnämnanden (RSS/Alerts)</h2>
+      <ul id="alerts-list"></ul>
+    </section>
+
+    <section id="gsc" class="card">
+      <h2>Google Search Console (brand)</h2>
+      <div class="grid">
+        <div>
+          <h3>30 dagar (summa)</h3>
+          <ul id="gsc-summary"></ul>
+        </div>
+        <div>
+          <h3>Toppfrågor</h3>
+          <ol id="gsc-queries"></ol>
+        </div>
+        <div>
+          <h3>Topp-sidor</h3>
+          <ol id="gsc-pages"></ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="bots" class="card">
+      <h2>AI-botar i loggar (24–48h)</h2>
+      <table id="bots-table">
+        <thead><tr><th>Bot</th><th>Träffar</th><th>Senast sedd</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <small>Tips: leta efter <code>GPTBot</code>, <code>PerplexityBot</code>, <code>Claude-Web</code>, <code>Google-Extended</code>.</small>
+    </section>
+  </main>
+
+  <footer><small>© World Poker Guide</small></footer>
+  <script src="./app.js" defer></script>
+</body>
+</html>
