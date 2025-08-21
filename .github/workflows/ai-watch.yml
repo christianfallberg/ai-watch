@@ -30,6 +30,7 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOG_DOMAIN:   ${{ secrets.LOG_DOMAIN }}     # ex: worldpoker.fallberg.com
+          FTPS_INSECURE:${{ secrets.FTPS_INSECURE }}  # "true" om certet krånglar (tillfälligt)
         run: |
           set -e
           mkdir -p logs
@@ -45,13 +46,20 @@ jobs:
             exit 0
           fi
 
+          INSECURE_FLAG=""
+          if [ "${FTPS_INSECURE,,}" = "true" ]; then
+            INSECURE_FLAG="--insecure"
+            echo "⚠️  FTPS running with --insecure (skipping certificate verification)"
+          fi
+
           if [ -n "$FTP_SERVER" ] && [ -n "$FTP_USERNAME" ] && [ -n "$FTP_PASSWORD" ] && [ -n "$LOG_DOMAIN" ]; then
             echo "Trying FTPS download from $FTP_SERVER for $LOG_DOMAIN"
 
             CUR_MON=$(date -u +%b-%Y)             # t.ex. Aug-2025
             PREV_MON=$(date -u -d "-1 month" +%b-%Y)
+            CPUSER="${FTP_USERNAME%@*}"           # ta bort ev. @domän
 
-            # Vanliga månadsarkivnamn i /logs
+            # Vanliga månadsarkivnamn
             CANDS="
             ${LOG_DOMAIN}-${CUR_MON}.gz
             ${LOG_DOMAIN}-${PREV_MON}.gz
@@ -59,15 +67,36 @@ jobs:
             ${LOG_DOMAIN}-ssl_log-${PREV_MON}.gz
             "
 
+            # Prova flera *basvägar*
+            BASES="
+            logs
+            access-logs
+            /logs
+            /access-logs
+            /home/${CPUSER}/logs
+            /home/${CPUSER}/access-logs
+            .
+            "
+
+            echo "— Directory probes (lista innehåll om möjligt) —"
+            for B in "" logs access-logs /logs /access-logs /home/${CPUSER}/logs /home/${CPUSER}/access-logs . ; do
+              echo "ls ftp://$FTP_SERVER/$B/"
+              curl --silent --show-error --fail --ftp-ssl $INSECURE_FLAG \
+                --user "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_SERVER/$B/" --list-only || true
+            done
+            echo "— End probes —"
+
             got_archive=""
             for F in $CANDS; do
-              url="ftp://$FTP_SERVER/logs/$F"
-              echo "Fetch $url"
-              if curl --silent --show-error --fail --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "$url" -o "logs/$F"; then
-                got_archive="logs/$F"
-                echo "Got $F"
-                break
-              fi
+              for BASE in $BASES; do
+                url="ftp://$FTP_SERVER/$BASE/$F"
+                echo "Fetch $url"
+                if curl --silent --show-error --fail --ftp-ssl $INSECURE_FLAG --user "$FTP_USERNAME:$FTP_PASSWORD" "$url" -o "logs/$F"; then
+                  got_archive="logs/$F"
+                  echo "Got $F from $BASE"
+                  break 2
+                fi
+              done
             done
 
             # Försök hämta dagens livefil (finns inte alltid)
@@ -77,13 +106,15 @@ jobs:
             "
             got_live=""
             for F in $LIVE_CANDS; do
-              url="ftp://$FTP_SERVER/logs/$F"
-              echo "Fetch $url"
-              if curl --silent --show-error --fail --ftp-ssl --user "$FTP_USERNAME:$FTP_PASSWORD" "$url" -o "logs/$F"; then
-                got_live="logs/$F"
-                echo "Got live $F"
-                break
-              fi
+              for BASE in $BASES; do
+                url="ftp://$FTP_SERVER/$BASE/$F"
+                echo "Fetch $url"
+                if curl --silent --show-error --fail --ftp-ssl $INSECURE_FLAG --user "$FTP_USERNAME:$FTP_PASSWORD" "$url" -o "logs/$F"; then
+                  got_live="logs/$F"
+                  echo "Got live $F from $BASE"
+                  break 2
+                fi
+              done
             done
 
             # Bygg samlad access.log (arkiv + live)
@@ -100,6 +131,7 @@ jobs:
           else
             echo "No demo flag and no FTP secrets — skipping logs."
           fi
+
 
       - name: Generate data.json
         env:
