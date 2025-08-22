@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-08-21T23:24:04.428Z",
+  "generated_at": "2025-08-22T02:02:28.677Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -8,13 +8,32 @@
   "alerts": [],
   "gsc": {
     "summary": {
-      "Klickar": 0,
-      "Visningar": 0,
-      "Gen. CTR": "0.00%",
-      "Period": "2025-05-23 → 2025-08-20 (fallback 90d)"
+      "Klickar": 1,
+      "Visningar": 4,
+      "Gen. CTR": "25.00%",
+      "Period": "2025-07-23 → 2025-08-21"
     },
     "topQueries": [],
-    "topPages": []
+    "topPages": [
+      {
+        "page": "https://worldpoker.guide/",
+        "clicks": 1,
+        "impressions": 2,
+        "ctr": 0.5
+      },
+      {
+        "page": "https://worldpoker.guide/demo.html",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0
+      },
+      {
+        "page": "https://worldpoker.guide/map.html",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0
+      }
+    ]
   },
   "bots": [
     {
