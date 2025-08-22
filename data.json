@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-08-22T10:27:58.221Z",
+  "generated_at": "2025-08-22T11:21:03.898Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -9,8 +9,8 @@
   "gsc": {
     "summary": {
       "Klickar": 5,
-      "Visningar": 12,
-      "Gen. CTR": "41.67%",
+      "Visningar": 14,
+      "Gen. CTR": "35.71%",
       "Period": "2025-07-23 → 2025-08-21"
     },
     "topQueries": [],
@@ -18,8 +18,8 @@
       {
         "page": "https://worldpoker.guide/",
         "clicks": 1,
-        "impressions": 4,
-        "ctr": 0.25
+        "impressions": 5,
+        "ctr": 0.2
       },
       {
         "page": "https://worldpoker.guide/demo.html",
@@ -30,8 +30,8 @@
       {
         "page": "https://worldpoker.guide/map.html",
         "clicks": 1,
-        "impressions": 3,
-        "ctr": 0.3333333333333333
+        "impressions": 4,
+        "ctr": 0.25
       },
       {
         "page": "https://www.worldpoker.guide/pwa/",
