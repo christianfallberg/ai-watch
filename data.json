@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-08-23T11:19:24.251Z",
+  "generated_at": "2025-08-23T12:49:25.195Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -50,12 +50,12 @@
   "bots": [
     {
       "name": "GPTBot (OpenAI)",
-      "hits": 179,
+      "hits": 205,
       "last_seen": "22/Aug/2025:04:24:31 -0700"
     },
     {
       "name": "Googlebot",
-      "hits": 134,
+      "hits": 139,
       "last_seen": "21/Aug/2025:15:12:02 -0700"
     },
     {
@@ -65,7 +65,7 @@
     },
     {
       "name": "Bingbot",
-      "hits": 19,
+      "hits": 26,
       "last_seen": "21/Aug/2025:22:52:43 -0700"
     },
     {
