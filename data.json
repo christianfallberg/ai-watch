@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-08-25T12:55:48.069Z",
+  "generated_at": "2025-08-25T13:36:10.494Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -51,22 +51,22 @@
     {
       "name": "GPTBot (OpenAI)",
       "hits": 281,
-      "last_seen": "24/Aug/2025:04:30:26 -0700"
+      "last_seen": "25/Aug/2025:04:41:22 -0700"
     },
     {
       "name": "Googlebot",
       "hits": 147,
-      "last_seen": "23/Aug/2025:19:05:43 -0700"
+      "last_seen": "25/Aug/2025:03:18:55 -0700"
     },
     {
       "name": "AhrefsBot",
       "hits": 92,
-      "last_seen": "23/Aug/2025:13:33:17 -0700"
+      "last_seen": "24/Aug/2025:20:02:42 -0700"
     },
     {
       "name": "Bingbot",
       "hits": 45,
-      "last_seen": "24/Aug/2025:03:28:34 -0700"
+      "last_seen": "24/Aug/2025:23:58:29 -0700"
     },
     {
       "name": "Applebot",
@@ -76,7 +76,7 @@
     {
       "name": "FacebookExternalHit",
       "hits": 7,
-      "last_seen": "20/Aug/2025:05:55:36 -0700"
+      "last_seen": "24/Aug/2025:11:13:20 -0700"
     },
     {
       "name": "Claude-Web (Anthropic)",
