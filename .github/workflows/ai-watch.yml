@@ -2,7 +2,7 @@ name: Build & commit AI Watch data
 
 on:
   schedule:
-    - cron: "0 * * * *"   # varje hel timme (UTC)
+    - cron: "0 0 * * *"   # varje hel timme (UTC)
   workflow_dispatch: {}
 
 concurrency:
