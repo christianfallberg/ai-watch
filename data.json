@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-09-02T01:53:09.537Z",
+  "generated_at": "2025-09-03T01:45:38.962Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -9,9 +9,9 @@
   "gsc": {
     "summary": {
       "Klickar": 5,
-      "Visningar": 15,
-      "Gen. CTR": "33.33%",
-      "Period": "2025-08-03 → 2025-09-01"
+      "Visningar": 16,
+      "Gen. CTR": "31.25%",
+      "Period": "2025-08-04 → 2025-09-02"
     },
     "topQueries": [],
     "topPages": [
@@ -24,8 +24,8 @@
       {
         "page": "https://worldpoker.guide/demo.html",
         "clicks": 1,
-        "impressions": 3,
-        "ctr": 0.3333333333333333
+        "impressions": 4,
+        "ctr": 0.25
       },
       {
         "page": "https://worldpoker.guide/map.html",
@@ -55,23 +55,23 @@
     },
     {
       "name": "Googlebot",
-      "hits": 184,
-      "last_seen": "01/Sep/2025:01:34:44 -0700"
+      "hits": 190,
+      "last_seen": "01/Sep/2025:22:51:35 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 126,
-      "last_seen": "01/Sep/2025:01:11:52 -0700"
+      "hits": 127,
+      "last_seen": "01/Sep/2025:22:10:42 -0700"
     },
     {
       "name": "Bingbot",
-      "hits": 63,
-      "last_seen": "01/Sep/2025:01:23:16 -0700"
+      "hits": 64,
+      "last_seen": "01/Sep/2025:08:24:05 -0700"
     },
     {
       "name": "Applebot",
-      "hits": 22,
-      "last_seen": "30/Aug/2025:02:11:11 -0700"
+      "hits": 26,
+      "last_seen": "01/Sep/2025:11:08:17 -0700"
     },
     {
       "name": "SemrushBot",
