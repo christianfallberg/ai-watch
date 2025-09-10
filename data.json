@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-09-09T01:50:23.881Z",
+  "generated_at": "2025-09-10T01:46:53.291Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -9,41 +9,41 @@
   "gsc": {
     "summary": {
       "Klickar": 5,
-      "Visningar": 37,
-      "Gen. CTR": "13.51%",
-      "Period": "2025-08-10 → 2025-09-08"
+      "Visningar": 43,
+      "Gen. CTR": "11.63%",
+      "Period": "2025-08-11 → 2025-09-09"
     },
     "topQueries": [],
     "topPages": [
       {
         "page": "https://worldpoker.guide/",
         "clicks": 1,
-        "impressions": 14,
-        "ctr": 0.07142857142857142
+        "impressions": 15,
+        "ctr": 0.06666666666666667
       },
       {
         "page": "https://worldpoker.guide/demo.html",
         "clicks": 1,
-        "impressions": 5,
-        "ctr": 0.2
+        "impressions": 6,
+        "ctr": 0.16666666666666666
       },
       {
         "page": "https://worldpoker.guide/map.html",
         "clicks": 1,
-        "impressions": 16,
-        "ctr": 0.0625
+        "impressions": 18,
+        "ctr": 0.05555555555555555
       },
       {
         "page": "https://www.worldpoker.guide/pwa/",
         "clicks": 1,
-        "impressions": 1,
-        "ctr": 1
+        "impressions": 2,
+        "ctr": 0.5
       },
       {
         "page": "https://www.worldpoker.guide/waiting-list/",
         "clicks": 1,
-        "impressions": 1,
-        "ctr": 1
+        "impressions": 2,
+        "ctr": 0.5
       }
     ]
   },
@@ -55,13 +55,13 @@
     },
     {
       "name": "Googlebot",
-      "hits": 210,
-      "last_seen": "07/Sep/2025:14:09:48 -0700"
+      "hits": 229,
+      "last_seen": "09/Sep/2025:02:09:18 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 148,
-      "last_seen": "06/Sep/2025:14:27:43 -0700"
+      "hits": 155,
+      "last_seen": "09/Sep/2025:04:27:57 -0700"
     },
     {
       "name": "Bingbot",
@@ -70,13 +70,13 @@
     },
     {
       "name": "Applebot",
-      "hits": 28,
-      "last_seen": "03/Sep/2025:08:03:13 -0700"
+      "hits": 30,
+      "last_seen": "08/Sep/2025:08:12:33 -0700"
     },
     {
       "name": "SemrushBot",
-      "hits": 14,
-      "last_seen": "06/Sep/2025:06:37:32 -0700"
+      "hits": 17,
+      "last_seen": "09/Sep/2025:05:00:40 -0700"
     },
     {
       "name": "FacebookExternalHit",
