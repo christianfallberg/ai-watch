@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-09-11T01:49:33.233Z",
+  "generated_at": "2025-09-12T01:45:19.130Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -9,17 +9,17 @@
   "gsc": {
     "summary": {
       "Klickar": 5,
-      "Visningar": 44,
-      "Gen. CTR": "11.36%",
-      "Period": "2025-08-12 → 2025-09-10"
+      "Visningar": 46,
+      "Gen. CTR": "10.87%",
+      "Period": "2025-08-13 → 2025-09-11"
     },
     "topQueries": [],
     "topPages": [
       {
         "page": "https://worldpoker.guide/",
         "clicks": 1,
-        "impressions": 16,
-        "ctr": 0.0625
+        "impressions": 17,
+        "ctr": 0.058823529411764705
       },
       {
         "page": "https://worldpoker.guide/demo.html",
@@ -30,8 +30,8 @@
       {
         "page": "https://worldpoker.guide/map.html",
         "clicks": 1,
-        "impressions": 18,
-        "ctr": 0.05555555555555555
+        "impressions": 19,
+        "ctr": 0.05263157894736842
       },
       {
         "page": "https://www.worldpoker.guide/pwa/",
@@ -55,13 +55,13 @@
     },
     {
       "name": "Googlebot",
-      "hits": 233,
-      "last_seen": "10/Sep/2025:05:03:39 -0700"
+      "hits": 236,
+      "last_seen": "10/Sep/2025:11:57:49 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 155,
-      "last_seen": "09/Sep/2025:04:27:57 -0700"
+      "hits": 158,
+      "last_seen": "11/Sep/2025:03:18:48 -0700"
     },
     {
       "name": "Bingbot",
