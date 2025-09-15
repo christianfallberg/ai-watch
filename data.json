@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-09-14T01:53:55.188Z",
+  "generated_at": "2025-09-15T01:55:30.887Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -11,7 +11,7 @@
       "Klickar": 5,
       "Visningar": 46,
       "Gen. CTR": "10.87%",
-      "Period": "2025-08-15 → 2025-09-13"
+      "Period": "2025-08-16 → 2025-09-14"
     },
     "topQueries": [],
     "topPages": [
@@ -49,49 +49,34 @@
   },
   "bots": [
     {
-      "name": "GPTBot (OpenAI)",
-      "hits": 405,
-      "last_seen": "06/Sep/2025:22:08:18 -0700"
-    },
-    {
       "name": "Googlebot",
-      "hits": 254,
+      "hits": 74,
       "last_seen": "12/Sep/2025:15:10:31 -0700"
     },
     {
+      "name": "GPTBot (OpenAI)",
+      "hits": 67,
+      "last_seen": "13/Sep/2025:12:13:02 -0700"
+    },
+    {
       "name": "AhrefsBot",
-      "hits": 168,
-      "last_seen": "12/Sep/2025:20:41:53 -0700"
+      "hits": 62,
+      "last_seen": "13/Sep/2025:18:19:58 -0700"
     },
     {
       "name": "Bingbot",
-      "hits": 88,
-      "last_seen": "13/Sep/2025:02:47:11 -0700"
-    },
-    {
-      "name": "Applebot",
-      "hits": 36,
-      "last_seen": "09/Sep/2025:16:36:14 -0700"
+      "hits": 40,
+      "last_seen": "14/Sep/2025:03:02:18 -0700"
     },
     {
       "name": "SemrushBot",
-      "hits": 19,
+      "hits": 16,
       "last_seen": "09/Sep/2025:11:13:49 -0700"
     },
     {
-      "name": "FacebookExternalHit",
-      "hits": 9,
-      "last_seen": "28/Aug/2025:14:40:19 -0700"
-    },
-    {
-      "name": "Claude-Web (Anthropic)",
-      "hits": 5,
-      "last_seen": "21/Aug/2025:15:21:09 -0700"
-    },
-    {
-      "name": "MJ12bot",
-      "hits": 2,
-      "last_seen": "09/Aug/2025:14:24:33 -0700"
+      "name": "Applebot",
+      "hits": 14,
+      "last_seen": "09/Sep/2025:16:36:14 -0700"
     }
   ]
 }
