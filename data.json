@@ -1,113 +1,49 @@
 {
-  "generated_at": "2025-09-20T01:44:30.320Z",
+  "generated_at": "2025-09-21T01:56:46.522Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
     "worldpoker guide"
   ],
-  "alerts": [
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:13063697892876780489",
-      "title": "Three WPT <b>Global</b> Daily Crown Tournaments You Must Play This Sunday - PokerNews",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokernews.com/news/promotions/2025/09/three-wpt-global-daily-crown-tournaments-you-must-play-49676.htm&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw2KcGSL2OM-39PWwu_qu4Cs",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-19T08:36:50.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:16443224958643946679",
-      "title": "Beginner&#39;s <b>Guide</b> to WCOOP 2025: All You Need to Know - Card Player",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.cardplayer.com/online-poker/beginners-guide-wcoop-2025&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw2ASTUF7YXIAuB518hcF5nZ",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-19T07:48:56.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:3756408340109022613",
-      "title": "Is it time for the WSOPE to go to a new country? - PokerStrategy.com",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokerstrategy.com/news/world-of-poker/Is-it-time-for-the-WSOPE-to-go-to-a-new-country-_137174/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw2DsknvWlbreCkxZoZPpk4M",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-19T07:32:52.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:2957808896811491271",
-      "title": "Is this the End of <b>Poker</b> in America? | PokerNews Podcast #917 | Videos",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokernews.com/video/is-this-the-end-of-poker-in-america-pokernews-podcast-917-13384.htm&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw36MvVHd6nmMH0Lrf1JLs9K",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-19T06:47:56.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:15145091985774002987",
-      "title": "What Is TORSE <b>Poker</b> &amp; Where Can You Play Online in the US? - Pokerfuse",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://pokerfuse.com/latest-news/2025/9/what-torse-poker-where-can-you-play-online-us/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw0rPKW4IfanD7saMY3nfTL9",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-19T01:20:37.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:962965767002879866",
-      "title": "Who is Giselle54? PLO grinder wins $650k in 24 hours - PokerStrategy.com",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokerstrategy.com/news/world-of-poker/Who-is-Giselle54-PLO-grinder-wins-%24650k-in-24-hours_137258/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw18KBLcaNQYgihYwMLpBQyh",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-19T00:17:39.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:1996990657033635955",
-      "title": "PREVIEW: 2025 DP <b>World</b> Tour – Open De France | Hollywoodbets Sports Blog",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://blog.hollywoodbets.net/default/preview-2025-dp-world-tour-open-de-france/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw11Bc0aFQ4DUFXhLy0E9Kqo",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-18T23:09:58.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:15157609888590975031",
-      "title": "How To Turn $100000 Into $650000 At The <b>Poker</b> Table - Card Player",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.cardplayer.com/poker-news/giselle54-high-stakes-online-plo-coin-poker-cash-games&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw3aGipuP6BNpKqOQELTFHJd",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-18T19:03:42.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:2976737620567420965",
-      "title": "Daniel Negreanu Joins Kalshi Amid Legal Scrutiny of Prediction Markets",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://news.worldcasinodirectory.com/%3Fp%3D119830&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw17j3bDtm3jUIhl0bY_t-Jo",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-18T12:22:41.000Z"
-    }
-  ],
+  "alerts": [],
   "gsc": {
     "summary": {
-      "Klickar": 5,
-      "Visningar": 49,
-      "Gen. CTR": "10.20%",
-      "Period": "2025-08-21 → 2025-09-19"
+      "Klickar": 0,
+      "Visningar": 37,
+      "Gen. CTR": "0.00%",
+      "Period": "2025-08-22 → 2025-09-20"
     },
     "topQueries": [],
     "topPages": [
       {
         "page": "https://worldpoker.guide/",
-        "clicks": 1,
-        "impressions": 17,
-        "ctr": 0.058823529411764705
+        "clicks": 0,
+        "impressions": 13,
+        "ctr": 0
       },
       {
         "page": "https://worldpoker.guide/demo.html",
-        "clicks": 1,
-        "impressions": 7,
-        "ctr": 0.14285714285714285
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": 0
       },
       {
         "page": "https://worldpoker.guide/map.html",
-        "clicks": 1,
-        "impressions": 19,
-        "ctr": 0.05263157894736842
+        "clicks": 0,
+        "impressions": 16,
+        "ctr": 0
       },
       {
         "page": "https://www.worldpoker.guide/pwa/",
-        "clicks": 1,
-        "impressions": 3,
-        "ctr": 0.3333333333333333
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0
       },
       {
         "page": "https://www.worldpoker.guide/waiting-list/",
-        "clicks": 1,
-        "impressions": 3,
-        "ctr": 0.3333333333333333
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0
       }
     ]
   },
@@ -119,8 +55,8 @@
     },
     {
       "name": "Googlebot",
-      "hits": 100,
-      "last_seen": "19/Sep/2025:03:29:01 -0700"
+      "hits": 102,
+      "last_seen": "19/Sep/2025:09:39:43 -0700"
     },
     {
       "name": "AhrefsBot",
