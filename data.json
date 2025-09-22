@@ -1,17 +1,32 @@
 {
-  "generated_at": "2025-09-21T01:56:46.522Z",
+  "generated_at": "2025-09-22T01:56:38.705Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
     "worldpoker guide"
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:17810158458222839099",
+      "title": "News: The first WPT event of 2026 announced - PokerStrategy.com",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokerstrategy.com/news/world-of-poker/The-first-WPT-event-of-2026-announced_137286/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw1QkFDzU6UUnvDl81ZfdA3q",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-09-22T01:01:05.000Z"
+    },
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:10373420696555027703",
+      "title": "Drop the Hammer: Stop the &#39;gimmicky payouts&#39;? Not so fast - <b>Poker</b>.org",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.poker.org/latest-news/drop-the-hammer-stop-the-gimmicky-payouts-not-so-fast-aY2fG5i0pObL/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw1DLyk21sh0r3xA80pA4t9p",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-09-21T23:14:52.000Z"
+    }
+  ],
   "gsc": {
     "summary": {
       "Klickar": 0,
       "Visningar": 37,
       "Gen. CTR": "0.00%",
-      "Period": "2025-08-22 → 2025-09-20"
+      "Period": "2025-08-23 → 2025-09-21"
     },
     "topQueries": [],
     "topPages": [
@@ -50,8 +65,8 @@
   "bots": [
     {
       "name": "GPTBot (OpenAI)",
-      "hits": 208,
-      "last_seen": "19/Sep/2025:02:40:39 -0700"
+      "hits": 211,
+      "last_seen": "20/Sep/2025:19:11:33 -0700"
     },
     {
       "name": "Googlebot",
@@ -60,13 +75,13 @@
     },
     {
       "name": "AhrefsBot",
-      "hits": 75,
-      "last_seen": "18/Sep/2025:09:52:50 -0700"
+      "hits": 79,
+      "last_seen": "20/Sep/2025:14:52:08 -0700"
     },
     {
       "name": "Bingbot",
-      "hits": 55,
-      "last_seen": "18/Sep/2025:11:58:55 -0700"
+      "hits": 60,
+      "last_seen": "21/Sep/2025:01:38:47 -0700"
     },
     {
       "name": "SemrushBot",
