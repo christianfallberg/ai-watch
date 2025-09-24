@@ -1,39 +1,24 @@
 {
-  "generated_at": "2025-09-23T01:47:03.544Z",
+  "generated_at": "2025-09-24T01:48:37.207Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
     "worldpoker guide"
   ],
-  "alerts": [
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:10201971259604658003",
-      "title": "Triton Jeju wins for Haxton and Martirosian - PokerStrategy.com",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokerstrategy.com/news/world-of-poker/Triton-Jeju-wins-for-Haxton-and-Martirosian_137310/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw2f-yp4enM0Xi7E00dwDUzE",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-22T13:31:49.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:13821614837812016774",
-      "title": "Why is adaptability the new edge in online <b>poker</b>? - SiGMA World",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://sigma.world/news/why-is-adaptability-the-new-edge-in-online-poker/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw0h8XmyPcNZQj2y9DiFk6kf",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-22T13:20:16.000Z"
-    }
-  ],
+  "alerts": [],
   "gsc": {
     "summary": {
       "Klickar": 0,
-      "Visningar": 37,
+      "Visningar": 38,
       "Gen. CTR": "0.00%",
-      "Period": "2025-08-24 → 2025-09-22"
+      "Period": "2025-08-25 → 2025-09-23"
     },
     "topQueries": [],
     "topPages": [
       {
         "page": "https://worldpoker.guide/",
         "clicks": 0,
-        "impressions": 13,
+        "impressions": 14,
         "ctr": 0
       },
       {
@@ -65,23 +50,23 @@
   "bots": [
     {
       "name": "GPTBot (OpenAI)",
-      "hits": 211,
-      "last_seen": "20/Sep/2025:19:11:33 -0700"
+      "hits": 247,
+      "last_seen": "23/Sep/2025:04:56:31 -0700"
     },
     {
       "name": "Googlebot",
-      "hits": 104,
-      "last_seen": "21/Sep/2025:17:52:29 -0700"
+      "hits": 110,
+      "last_seen": "22/Sep/2025:23:04:11 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 85,
-      "last_seen": "21/Sep/2025:16:53:27 -0700"
+      "hits": 87,
+      "last_seen": "22/Sep/2025:09:05:40 -0700"
     },
     {
       "name": "Bingbot",
-      "hits": 62,
-      "last_seen": "21/Sep/2025:12:01:58 -0700"
+      "hits": 65,
+      "last_seen": "22/Sep/2025:12:02:08 -0700"
     },
     {
       "name": "SemrushBot",
