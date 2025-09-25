@@ -1,17 +1,32 @@
 {
-  "generated_at": "2025-09-24T01:48:37.207Z",
+  "generated_at": "2025-09-25T01:49:15.303Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
     "worldpoker guide"
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:10202218761113854844",
+      "title": "<b>CoinPoker</b> Ambassador &#39;Bencb&#39; Wins WSOP Online Main Event - <b>Poker</b> Scout",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokerscout.com/coinpoker-ambassador-bencb-wins-wsop-online-main-event/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw27ScjWmi5rmzgeue3lKbfo",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-09-24T12:30:00.000Z"
+    },
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:17933648109631177688",
+      "title": "Pawel Wojciechowski Wins First WSOP Bracelet After Golden Run in Rozvadov | Tight <b>Poker</b>",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.tightpoker.com/news/pawel-wojciechowski-wins-first-wsop-bracelet-after-golden-run-in-rozvadov/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw3NfIdDNJ-4O3v1_gLp_r8g",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-09-24T12:07:38.000Z"
+    }
+  ],
   "gsc": {
     "summary": {
       "Klickar": 0,
-      "Visningar": 38,
+      "Visningar": 40,
       "Gen. CTR": "0.00%",
-      "Period": "2025-08-25 → 2025-09-23"
+      "Period": "2025-08-26 → 2025-09-24"
     },
     "topQueries": [],
     "topPages": [
@@ -24,13 +39,13 @@
       {
         "page": "https://worldpoker.guide/demo.html",
         "clicks": 0,
-        "impressions": 4,
+        "impressions": 5,
         "ctr": 0
       },
       {
         "page": "https://worldpoker.guide/map.html",
         "clicks": 0,
-        "impressions": 16,
+        "impressions": 17,
         "ctr": 0
       },
       {
@@ -50,23 +65,23 @@
   "bots": [
     {
       "name": "GPTBot (OpenAI)",
-      "hits": 247,
-      "last_seen": "23/Sep/2025:04:56:31 -0700"
+      "hits": 255,
+      "last_seen": "23/Sep/2025:13:12:11 -0700"
     },
     {
       "name": "Googlebot",
-      "hits": 110,
-      "last_seen": "22/Sep/2025:23:04:11 -0700"
+      "hits": 112,
+      "last_seen": "23/Sep/2025:19:00:08 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 87,
-      "last_seen": "22/Sep/2025:09:05:40 -0700"
+      "hits": 91,
+      "last_seen": "24/Sep/2025:01:39:42 -0700"
     },
     {
       "name": "Bingbot",
-      "hits": 65,
-      "last_seen": "22/Sep/2025:12:02:08 -0700"
+      "hits": 67,
+      "last_seen": "23/Sep/2025:12:07:02 -0700"
     },
     {
       "name": "SemrushBot",
