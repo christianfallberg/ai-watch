@@ -1,32 +1,17 @@
 {
-  "generated_at": "2025-09-25T01:49:15.303Z",
+  "generated_at": "2025-09-26T01:48:39.272Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
     "worldpoker guide"
   ],
-  "alerts": [
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:10202218761113854844",
-      "title": "<b>CoinPoker</b> Ambassador &#39;Bencb&#39; Wins WSOP Online Main Event - <b>Poker</b> Scout",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokerscout.com/coinpoker-ambassador-bencb-wins-wsop-online-main-event/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw27ScjWmi5rmzgeue3lKbfo",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-24T12:30:00.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:17933648109631177688",
-      "title": "Pawel Wojciechowski Wins First WSOP Bracelet After Golden Run in Rozvadov | Tight <b>Poker</b>",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.tightpoker.com/news/pawel-wojciechowski-wins-first-wsop-bracelet-after-golden-run-in-rozvadov/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw3NfIdDNJ-4O3v1_gLp_r8g",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-09-24T12:07:38.000Z"
-    }
-  ],
+  "alerts": [],
   "gsc": {
     "summary": {
       "Klickar": 0,
       "Visningar": 40,
       "Gen. CTR": "0.00%",
-      "Period": "2025-08-26 → 2025-09-24"
+      "Period": "2025-08-27 → 2025-09-25"
     },
     "topQueries": [],
     "topPages": [
@@ -65,13 +50,13 @@
   "bots": [
     {
       "name": "GPTBot (OpenAI)",
-      "hits": 255,
-      "last_seen": "23/Sep/2025:13:12:11 -0700"
+      "hits": 260,
+      "last_seen": "25/Sep/2025:01:16:49 -0700"
     },
     {
       "name": "Googlebot",
-      "hits": 112,
-      "last_seen": "23/Sep/2025:19:00:08 -0700"
+      "hits": 117,
+      "last_seen": "24/Sep/2025:09:47:19 -0700"
     },
     {
       "name": "AhrefsBot",
@@ -80,8 +65,8 @@
     },
     {
       "name": "Bingbot",
-      "hits": 67,
-      "last_seen": "23/Sep/2025:12:07:02 -0700"
+      "hits": 70,
+      "last_seen": "24/Sep/2025:12:15:40 -0700"
     },
     {
       "name": "SemrushBot",
@@ -90,8 +75,8 @@
     },
     {
       "name": "Applebot",
-      "hits": 17,
-      "last_seen": "18/Sep/2025:00:33:10 -0700"
+      "hits": 23,
+      "last_seen": "24/Sep/2025:12:13:17 -0700"
     }
   ]
 }
