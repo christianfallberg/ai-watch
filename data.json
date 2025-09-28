@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-09-27T01:44:15.707Z",
+  "generated_at": "2025-09-28T01:57:27.572Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -9,9 +9,9 @@
   "gsc": {
     "summary": {
       "Klickar": 0,
-      "Visningar": 40,
+      "Visningar": 39,
       "Gen. CTR": "0.00%",
-      "Period": "2025-08-28 → 2025-09-26"
+      "Period": "2025-08-29 → 2025-09-27"
     },
     "topQueries": [],
     "topPages": [
@@ -30,7 +30,7 @@
       {
         "page": "https://worldpoker.guide/map.html",
         "clicks": 0,
-        "impressions": 17,
+        "impressions": 16,
         "ctr": 0
       },
       {
@@ -50,18 +50,18 @@
   "bots": [
     {
       "name": "GPTBot (OpenAI)",
-      "hits": 271,
-      "last_seen": "26/Sep/2025:04:48:00 -0700"
+      "hits": 277,
+      "last_seen": "26/Sep/2025:08:54:53 -0700"
     },
     {
       "name": "Googlebot",
-      "hits": 119,
-      "last_seen": "26/Sep/2025:03:48:33 -0700"
+      "hits": 125,
+      "last_seen": "26/Sep/2025:12:13:17 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 93,
-      "last_seen": "25/Sep/2025:20:19:10 -0700"
+      "hits": 97,
+      "last_seen": "27/Sep/2025:03:50:48 -0700"
     },
     {
       "name": "Bingbot",
