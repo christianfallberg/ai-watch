@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-09-30T01:46:47.006Z",
+  "generated_at": "2025-10-01T01:58:56.754Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -11,7 +11,7 @@
       "Klickar": 0,
       "Visningar": 39,
       "Gen. CTR": "0.00%",
-      "Period": "2025-08-31 → 2025-09-29"
+      "Period": "2025-09-01 → 2025-09-30"
     },
     "topQueries": [],
     "topPages": [
@@ -55,13 +55,13 @@
     },
     {
       "name": "Googlebot",
-      "hits": 128,
-      "last_seen": "29/Sep/2025:03:37:15 -0700"
+      "hits": 137,
+      "last_seen": "29/Sep/2025:08:49:37 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 100,
-      "last_seen": "28/Sep/2025:15:41:15 -0700"
+      "hits": 111,
+      "last_seen": "29/Sep/2025:22:37:59 -0700"
     },
     {
       "name": "Bingbot",
@@ -80,8 +80,8 @@
     },
     {
       "name": "MJ12bot",
-      "hits": 2,
-      "last_seen": "28/Sep/2025:14:08:52 -0700"
+      "hits": 12,
+      "last_seen": "30/Sep/2025:03:09:56 -0700"
     }
   ]
 }
