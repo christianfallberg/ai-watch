@@ -1,24 +1,39 @@
 {
-  "generated_at": "2025-10-04T01:43:02.049Z",
+  "generated_at": "2025-10-05T01:56:58.370Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
     "worldpoker guide"
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:2893785275310857714",
+      "title": "SPRINGBOKS V ARGENTINA: Saturday 4 October 2025 - Predictions, Permutations, Team ...",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://blog.hollywoodbets.net/rugby/international-rugby/springboks-v-argentina-saturday-4-october-2025-predictions-permutations-team-news-how-to-watch-betting-odds-more/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw3XOb7_aRelN6rZlkOpCvQk",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-10-04T12:22:29.000Z"
+    },
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:11610723858691825604",
+      "title": "PLO Mastermind Announces PLOktober With a Free NLHE Player&#39;s <b>Guide</b> to PLO",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://pokerfuse.com/latest-news/2025/10/plo-mastermind-announces-ploktober-free-nlhe/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw0z24zoEhg3G3DgBrCQoB-2",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-10-04T06:36:50.000Z"
+    }
+  ],
   "gsc": {
     "summary": {
       "Klickar": 0,
-      "Visningar": 21,
+      "Visningar": 18,
       "Gen. CTR": "0.00%",
-      "Period": "2025-09-04 → 2025-10-03"
+      "Period": "2025-09-05 → 2025-10-04"
     },
     "topQueries": [],
     "topPages": [
       {
         "page": "https://worldpoker.guide/",
         "clicks": 0,
-        "impressions": 6,
+        "impressions": 5,
         "ctr": 0
       },
       {
@@ -30,7 +45,7 @@
       {
         "page": "https://worldpoker.guide/map.html",
         "clicks": 0,
-        "impressions": 8,
+        "impressions": 6,
         "ctr": 0
       },
       {
@@ -55,12 +70,12 @@
     },
     {
       "name": "Googlebot",
-      "hits": 175,
+      "hits": 177,
       "last_seen": "29/Sep/2025:08:49:37 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 115,
+      "hits": 124,
       "last_seen": "29/Sep/2025:22:37:59 -0700"
     },
     {
@@ -75,7 +90,7 @@
     },
     {
       "name": "SemrushBot",
-      "hits": 32,
+      "hits": 34,
       "last_seen": "27/Sep/2025:19:36:14 -0700"
     },
     {
@@ -85,7 +100,7 @@
     },
     {
       "name": "MJ12bot",
-      "hits": 20,
+      "hits": 22,
       "last_seen": "30/Sep/2025:03:09:56 -0700"
     }
   ]
