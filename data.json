@@ -1,39 +1,24 @@
 {
-  "generated_at": "2025-10-06T01:50:02.343Z",
+  "generated_at": "2025-10-07T01:47:28.081Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
     "worldpoker guide"
   ],
-  "alerts": [
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:14697676827601954080",
-      "title": "News: PLO Cash Game <b>World</b> Championship 2025 - PokerStrategy.com",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokerstrategy.com/news/pokerstrategy/PLO-Cash-Game-World-Championship-2025_137374/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw3_xqHlBXiMm8ntEqq_YGCZ",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-10-05T16:00:27.000Z"
-    },
-    {
-      "id": "tag:google.com,2013:googlealerts/feed:8959381777898010799",
-      "title": "<b>Poker Strategy</b> With Mark Mazmanian: Loose Lips Sink Chips - Card Player",
-      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.cardplayer.com/poker-news/poker-strategy-mark-mazmanian-loose-lips-sink-chips&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw11ZwR0sLnqeUfUYL9b7oF4",
-      "source": "Google Alert - World Poker Guide",
-      "published": "2025-10-05T12:40:06.000Z"
-    }
-  ],
+  "alerts": [],
   "gsc": {
     "summary": {
       "Klickar": 0,
-      "Visningar": 18,
+      "Visningar": 19,
       "Gen. CTR": "0.00%",
-      "Period": "2025-09-06 → 2025-10-05"
+      "Period": "2025-09-07 → 2025-10-06"
     },
     "topQueries": [],
     "topPages": [
       {
         "page": "https://worldpoker.guide/",
         "clicks": 0,
-        "impressions": 5,
+        "impressions": 6,
         "ctr": 0
       },
       {
@@ -70,7 +55,7 @@
     },
     {
       "name": "Googlebot",
-      "hits": 181,
+      "hits": 182,
       "last_seen": "29/Sep/2025:08:49:37 -0700"
     },
     {
@@ -80,7 +65,7 @@
     },
     {
       "name": "Bingbot",
-      "hits": 80,
+      "hits": 86,
       "last_seen": "28/Sep/2025:03:19:32 -0700"
     },
     {
@@ -100,7 +85,7 @@
     },
     {
       "name": "MJ12bot",
-      "hits": 24,
+      "hits": 26,
       "last_seen": "30/Sep/2025:03:09:56 -0700"
     }
   ]
