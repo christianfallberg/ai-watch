@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-15T01:52:28.958Z",
+  "generated_at": "2025-10-16T01:51:16.020Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -11,7 +11,7 @@
       "Klickar": 0,
       "Visningar": 14,
       "Gen. CTR": "0.00%",
-      "Period": "2025-09-15 → 2025-10-14"
+      "Period": "2025-09-16 → 2025-10-15"
     },
     "topQueries": [],
     "topPages": [
@@ -50,13 +50,13 @@
   "bots": [
     {
       "name": "Googlebot",
-      "hits": 78,
-      "last_seen": "13/Oct/2025:14:15:14 -0700"
+      "hits": 83,
+      "last_seen": "14/Oct/2025:21:28:22 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 40,
-      "last_seen": "13/Oct/2025:13:34:16 -0700"
+      "hits": 50,
+      "last_seen": "14/Oct/2025:14:20:42 -0700"
     },
     {
       "name": "Claude-Web (Anthropic)",
