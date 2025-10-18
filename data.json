@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-17T01:49:37.210Z",
+  "generated_at": "2025-10-18T01:45:07.175Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
@@ -9,16 +9,16 @@
   "gsc": {
     "summary": {
       "Klickar": 0,
-      "Visningar": 14,
+      "Visningar": 15,
       "Gen. CTR": "0.00%",
-      "Period": "2025-09-17 → 2025-10-16"
+      "Period": "2025-09-18 → 2025-10-17"
     },
     "topQueries": [],
     "topPages": [
       {
         "page": "https://worldpoker.guide/",
         "clicks": 0,
-        "impressions": 7,
+        "impressions": 8,
         "ctr": 0
       },
       {
@@ -50,13 +50,13 @@
   "bots": [
     {
       "name": "Googlebot",
-      "hits": 88,
-      "last_seen": "15/Oct/2025:15:15:16 -0700"
+      "hits": 105,
+      "last_seen": "16/Oct/2025:22:30:56 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 50,
-      "last_seen": "14/Oct/2025:14:20:42 -0700"
+      "hits": 53,
+      "last_seen": "16/Oct/2025:19:00:02 -0700"
     },
     {
       "name": "Claude-Web (Anthropic)",
@@ -75,8 +75,8 @@
     },
     {
       "name": "SemrushBot",
-      "hits": 8,
-      "last_seen": "14/Oct/2025:00:12:37 -0700"
+      "hits": 10,
+      "last_seen": "16/Oct/2025:13:06:49 -0700"
     },
     {
       "name": "GPTBot (OpenAI)",
