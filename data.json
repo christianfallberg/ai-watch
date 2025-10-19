@@ -1,46 +1,70 @@
 {
-  "generated_at": "2025-10-18T01:45:07.175Z",
+  "generated_at": "2025-10-19T02:02:21.729Z",
   "brand_terms": [
     "World Poker Guide",
     "worldpoker.guide",
     "worldpoker guide"
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:16242967719821204412",
+      "title": "PLO Mastermind Expands Its PLO 5 Learning Resources - Pokerfuse",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://pokerfuse.com/latest-news/2025/10/plo-mastermind-expands-its-plo-5-learning/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw07mxUBfsd6ima105SIWhs1",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-10-18T22:54:46.000Z"
+    },
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:18029015959943433160",
+      "title": "The Best Times to Play Sit &amp; Go Tournaments - Legal US <b>Poker</b> Sites",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.legaluspokersites.com/best-sng-tournament-times/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw3Jj6SQL2bQmOX5i4ccSebM",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-10-18T19:25:28.000Z"
+    },
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:3827074680475238598",
+      "title": "Sunday Sweat <b>Strategy</b> — Should You Ever Pick the Underdog? - <b>Poker</b> Scout",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokerscout.com/pokerstars-open-sunday-sweat-strategy-should-you-ever-pick-the-underdog/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw01o4yl9X4ZXFyBT2XCTaNI",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-10-18T17:31:27.000Z"
+    },
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:8131788410886508167",
+      "title": "CoinPoker PLO Cash Game <b>World</b> Championship: Dirk &#39;venividi1993&#39; Gerritse Still Leading",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.pokerscout.com/coinpoker-plo-cash-game-world-championship-dirk-venividi1993-gerritse-still-leading/&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw1x-Np59y10zaFLuU7L0KYk",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-10-18T17:31:26.000Z"
+    },
+    {
+      "id": "tag:google.com,2013:googlealerts/feed:14934961472588282960",
+      "title": "Erik Seidel Earns 35th Career Title With PGT PLO Series II Win - Card Player",
+      "link": "https://www.google.com/url?rct=j&sa=t&url=https://www.cardplayer.com/poker-news/erik-seidel-earns-35th-career-title-with-pgt-plo-series-ii-win&ct=ga&cd=CAIyGjgyNjdhMmU4ZThiNGE5ZGE6Y29tOmVuOlVT&usg=AOvVaw2-3pentFpM5aV54Uowl5q0",
+      "source": "Google Alert - World Poker Guide",
+      "published": "2025-10-18T16:42:48.000Z"
+    }
+  ],
   "gsc": {
     "summary": {
       "Klickar": 0,
-      "Visningar": 15,
+      "Visningar": 10,
       "Gen. CTR": "0.00%",
-      "Period": "2025-09-18 → 2025-10-17"
+      "Period": "2025-09-19 → 2025-10-18"
     },
     "topQueries": [],
     "topPages": [
       {
         "page": "https://worldpoker.guide/",
         "clicks": 0,
-        "impressions": 8,
+        "impressions": 7,
         "ctr": 0
       },
       {
         "page": "https://worldpoker.guide/demo.html",
         "clicks": 0,
-        "impressions": 3,
-        "ctr": 0
-      },
-      {
-        "page": "https://worldpoker.guide/map.html",
-        "clicks": 0,
         "impressions": 2,
         "ctr": 0
       },
       {
-        "page": "https://www.worldpoker.guide/pwa/",
-        "clicks": 0,
-        "impressions": 1,
-        "ctr": 0
-      },
-      {
-        "page": "https://www.worldpoker.guide/waiting-list/",
+        "page": "https://worldpoker.guide/map.html",
         "clicks": 0,
         "impressions": 1,
         "ctr": 0
@@ -50,13 +74,13 @@
   "bots": [
     {
       "name": "Googlebot",
-      "hits": 105,
-      "last_seen": "16/Oct/2025:22:30:56 -0700"
+      "hits": 107,
+      "last_seen": "17/Oct/2025:15:28:06 -0700"
     },
     {
       "name": "AhrefsBot",
-      "hits": 53,
-      "last_seen": "16/Oct/2025:19:00:02 -0700"
+      "hits": 56,
+      "last_seen": "17/Oct/2025:22:06:27 -0700"
     },
     {
       "name": "Claude-Web (Anthropic)",
