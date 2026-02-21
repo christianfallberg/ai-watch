@@ -1,8 +1,6 @@
 name: Build & commit AI Watch data
 
 on:
-  schedule:
-    - cron: "0 0 * * *"   # varje hel timme (UTC)
   workflow_dispatch: {}
 
 concurrency:
@@ -19,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # viktigt för rebase
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -29,21 +27,18 @@ jobs:
       - name: Install deps
         run: npm i rss-parser googleapis
 
-      # 1) Demo-logg om USE_DEMO_LOGS=true
-      # 2) Annars hämta via SSH+SCP, filtrerat till LOG_DOMAIN (t.ex. worldpoker.fallberg.com)
       - name: Prepare access logs (demo or SFTP/SCP)
         env:
-          USE_DEMO_LOGS: ${{ secrets.USE_DEMO_LOGS }}   # "true" för demo
+          USE_DEMO_LOGS: ${{ secrets.USE_DEMO_LOGS }}
           SSH_HOST:      ${{ secrets.SSH_HOST }}
           SSH_USER:      ${{ secrets.SSH_USER }}
-          SSH_PORT:      ${{ secrets.SSH_PORT }}        # valfri, default 22
-          SSH_PASSWORD:  ${{ secrets.SSH_PASSWORD }}    # valfri fallback (om servern tillåter)
-          LOG_DOMAIN:    ${{ secrets.LOG_DOMAIN }}      # ex: worldpoker.fallberg.com
+          SSH_PORT:      ${{ secrets.SSH_PORT }}
+          SSH_PASSWORD:  ${{ secrets.SSH_PASSWORD }}
+          LOG_DOMAIN:    ${{ secrets.LOG_DOMAIN }}
         run: |
           set -e
           mkdir -p logs
 
-          # --- Demo ---
           if [ "${USE_DEMO_LOGS,,}" = "true" ]; then
             echo "Using demo access.log"
             printf '%s\n' \
@@ -55,7 +50,6 @@ jobs:
             exit 0
           fi
 
-          # --- SSH/SCP för riktiga loggar ---
           if [ -n "$SSH_HOST" ] && [ -n "$SSH_USER" ] && [ -n "${{ secrets.SSH_PRIVATE_KEY }}" ] && [ -n "$LOG_DOMAIN" ]; then
             PORT="${SSH_PORT:-22}"
             printf '%s' '${{ secrets.SSH_PRIVATE_KEY }}' > key
@@ -64,7 +58,6 @@ jobs:
             REMOTE_DIR="/home/$SSH_USER/logs"
             echo "Listing remote logs in $REMOTE_DIR for domain: $LOG_DOMAIN"
 
-            # Lista enbart filer för LOG_DOMAIN: månadsarkiv (.gz) + ev. livefil (-ssl_log*)
             set +e
             REMOTE_LIST=$(ssh -i key -p "$PORT" -o StrictHostKeyChecking=no "$SSH_USER@$SSH_HOST" \
               "ls -1 $REMOTE_DIR/${LOG_DOMAIN}-*.gz $REMOTE_DIR/${LOG_DOMAIN}-ssl_log* 2>/dev/null")
@@ -77,7 +70,6 @@ jobs:
             if [ -z "$REMOTE_LIST" ]; then
               echo "No matching remote log files for $LOG_DOMAIN"
             else
-              # Hämta varje träff med scp (password-fallback om satt)
               while IFS= read -r REMOTE_FILE; do
                 [ -n "$REMOTE_FILE" ] || continue
                 echo "Downloading $REMOTE_FILE"
@@ -91,15 +83,12 @@ jobs:
               done <<< "$REMOTE_LIST"
             fi
 
-            # Slå ihop allt till en access.log
             : > logs/access.log
-            # livefiler (utan .gz)
             for f in logs/${LOG_DOMAIN}-ssl_log*; do
               if [ -f "$f" ] && [[ "$f" != *.gz ]]; then
                 cat "$f" >> logs/access.log
               fi
             done
-            # arkiv (.gz)
             for f in logs/${LOG_DOMAIN}-*.gz; do
               [ -f "$f" ] && gunzip -c "$f" >> logs/access.log
             done
@@ -122,8 +111,8 @@ jobs:
           GSC_CLIENT_SECRET: ${{ secrets.GSC_CLIENT_SECRET }}
           GSC_REFRESH_TOKEN: ${{ secrets.GSC_REFRESH_TOKEN }}
           GSC_PROPERTY:      ${{ secrets.GSC_PROPERTY }}
-          LOG_PATH:          ${{ env.LOG_PATH }}   # sätts endast om logg hittades
-          DEMO:              ${{ secrets.DEMO }}   # valfritt demo-läge i scriptet
+          LOG_PATH:          ${{ env.LOG_PATH }}
+          DEMO:              ${{ secrets.DEMO }}
         run: node scripts/update_data.mjs
 
       - name: Commit data.json
@@ -133,12 +122,8 @@ jobs:
             git config user.email "actions@users.noreply.github.com"
             git add data.json
             git commit -m "Update data.json [skip ci]" || true
-
-            # Hämta senaste och rebase:a vår commit över origin/main
             git fetch origin main
             git rebase origin/main || (git rebase --abort && echo "Rebase failed" && exit 1)
-
-            # Pusha rebasead HEAD till main
             git push origin HEAD:main
           else
             echo "No changes to commit"
